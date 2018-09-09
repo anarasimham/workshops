@@ -12,6 +12,7 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
@@ -153,13 +154,14 @@ public class HBaseAPI {
     public static void main(String... args) throws IOException {
         Configuration config = HBaseConfiguration.create();
 
-//        config.set("hbase.zookeeper.quorum", "sandbox.hortonworks.com");
-//        config.set("hbase.zookeeper.property.clientPort", "2181");
-//        config.set("zookeeper.znode.parent", "/hbase-unsecure");
+        config.set("hbase.zookeeper.quorum", "anarasimham-hdp-1.field.hortonworks.com");
+        config.set("hbase.zookeeper.property.clientPort", "2181");
+        config.set("zookeeper.znode.parent", "/hbase-unsecure");
         
         //Add any necessary configuration files (hbase-site.xml, core-site.xml)
-        //  config.addResource(new Path(System.getenv("HBASE_CONF_DIR"), "hbase-site.xml"));
-        //  config.addResource(new Path(System.getenv("HADOOP_CONF_DIR"), "core-site.xml"));
+
+          config.addResource(new Path(System.getenv("HBASE_CONF_DIR"), "hbase-site.xml"));
+          config.addResource(new Path(System.getenv("HADOOP_CONF_DIR"), "core-site.xml"));
         //createSchemaTables(config);
         //modifySchema(config);
         
