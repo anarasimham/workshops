@@ -126,10 +126,10 @@ public class HBaseAPI {
 	        	fs = FileSystem.get(config);
 
 	        	FileStatus[] fileStatus = fs.listStatus(new Path("hdfs://anarasimham-hdp-1.field.hortonworks.com:8020/tmp/txn_new"));
+	        	int count = 0;
 
 	        	for (FileStatus st : fileStatus) {
 	        		Path filePath = st.getPath();
-	        		int count = 0;
 	        		Put put;
 	        		BufferedReader buf = new BufferedReader(new InputStreamReader(fs.open(filePath)));
 	        		List<Put> puts = new ArrayList<>();
