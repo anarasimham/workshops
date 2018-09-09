@@ -130,6 +130,7 @@ public class HBaseAPI {
 
 	        	for (FileStatus st : fileStatus) {
 	        		Path filePath = st.getPath();
+	        		System.out.println(filePath.toString());
 	        		Put put;
 	        		BufferedReader buf = new BufferedReader(new InputStreamReader(fs.open(filePath)));
 	        		List<Put> puts = new ArrayList<>();
@@ -152,6 +153,7 @@ public class HBaseAPI {
         					mutator.mutate(puts);
         					LOG.log(Level.INFO, "Count: {0}", count);
         					puts.clear();
+        					LOG.log(Level.INFO, "ID: {0}", line[0]);
         				}
 	        		}
 	        		mutator.mutate(puts);
