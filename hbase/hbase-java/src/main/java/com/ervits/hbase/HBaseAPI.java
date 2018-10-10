@@ -45,7 +45,7 @@ public class HBaseAPI {
 
     private static final Logger LOG = Logger.getLogger(HBaseAPI.class.getName());
 
-    private static final String TABLE_NAME = "table1";
+    private static final String TABLE_NAME = "transactions_hbase";
     private static final String CF_DEFAULT = "cf";
 
     public static void createOrOverwrite(Admin admin, HTableDescriptor table) throws IOException {
@@ -125,7 +125,7 @@ public class HBaseAPI {
                 final BufferedMutator mutator = connection.getBufferedMutator(params)) {
 	        	fs = FileSystem.get(config);
 
-	        	FileStatus[] fileStatus = fs.listStatus(new Path("hdfs://anarasimham-hdp-1.field.hortonworks.com:8020/tmp/txn_new"));
+	        	FileStatus[] fileStatus = fs.listStatus(new Path("hdfs://anarasimham-hdp10.field.hortonworks.com:8020/warehouse/externals/pos_cust_data"));
 	        	int count = 0;
 
 	        	for (FileStatus st : fileStatus) {
@@ -181,7 +181,7 @@ public class HBaseAPI {
 
     public static void main(String... args) throws IOException {
         Configuration config = HBaseConfiguration.create();
-        config.set("hbase.zookeeper.quorum", "anarasimham-hdp-1.field.hortonworks.com");
+        config.set("hbase.zookeeper.quorum", "anarasimham-hdp10.field.hortonworks.com");
         config.set("hbase.zookeeper.property.clientPort", "2181");
         config.set("zookeeper.znode.parent", "/hbase-unsecure");
         config.set("fs.hdfs.impl", org.apache.hadoop.hdfs.DistributedFileSystem.class.getName());
