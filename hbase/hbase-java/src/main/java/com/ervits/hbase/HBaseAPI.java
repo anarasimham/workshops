@@ -140,13 +140,13 @@ public class HBaseAPI {
 	        			String[] line = csv.readNext();
 	        			String rowKey = String.join("~", line[7], line[6], line[1], line[4], line[3]);
 	        			put = new Put(Bytes.toBytes(rowKey));
-	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("trxn_amt"), Bytes.toBytes(line[8]));
-	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("discount_amt"), Bytes.toBytes(line[9]));
-	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("store_id"), Bytes.toBytes(line[10]));
-	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("rep_id"), Bytes.toBytes(line[11]));
+	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("trxn_amt"), Bytes.toBytes(Float.parseFloat(line[8])));
+	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("discount_amt"), Bytes.toBytes(Integer.parseInt(line[9])));
+	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("store_id"), Bytes.toBytes(Integer.parseInt(line[10])));
+	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("rep_id"), Bytes.toBytes(Integer.parseInt(line[11])));
 	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("part_sku"), Bytes.toBytes(line[12]));
-	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("id"), Bytes.toBytes(line[0]));
-	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("qty"), Bytes.toBytes(line[13]));
+	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("id"), Bytes.toBytes(Integer.parseInt(line[0])));
+	        			put.addColumn(Bytes.toBytes(CF_DEFAULT), Bytes.toBytes("qty"), Bytes.toBytes(Integer.parseInt(line[13])));
 	        			puts.add(put);
 	        			count++;
 	        			if((count % 10000) == 0) {
